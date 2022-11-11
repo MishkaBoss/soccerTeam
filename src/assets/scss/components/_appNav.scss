@@ -1,0 +1,19 @@
+.app-nav {
+    background-color: $navColor;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    height: $navHeight;
+
+    .container {
+        width: 100%;
+        // display: flex;
+        // justify-content: space-around;
+
+        nav {
+            // margin-block: rem(20px);
+            height: $navHeight;
+        }
+    }
+}
