@@ -1,27 +1,30 @@
-import {PlayerList} from '../components/PlayerList'
-import {connect, useSelector, useDispatch} from 'react-redux'
-import {useEffect} from 'react'
-import {loadPlayers} from '../store/actions/playerActions.js'
+import { PlayerList } from '../components/PlayerList'
+import { connect, useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { loadPlayers, removePlayer } from '../store/actions/playerActions.js'
 
 export const SoccerTeamApp = (props) => {
-    const { players } = useSelector(state => state.playerModule)
-    const dispatch = useDispatch()
+  const { players } = useSelector(state => state.playerModule)
+  const dispatch = useDispatch()
 
-    useEffect(() => {
-      dispatch(loadPlayers())
+  useEffect(() => {
+    dispatch(loadPlayers())
     // console.log(players);
-      return () => {
-        
-      }
-    },[])
-    
+    return () => {
 
-    // const backgroundStyling = { backgroundImage: 'url(src/assets/scss/images/bg_image.jpeg)' }
-    if (!players) return <div>Loading... </div>
-    return (
-        <div className="soccer-team-app" >
-            
-            <PlayerList players={players}/>
-        </div>
-    )
+    }
+  }, [])
+
+  const onRemovePlayer = async (playerId) => {
+
+    await dispatch(removePlayer(playerId))
+  }
+
+  if (!players) return <div>Loading... </div>
+  return (
+    <div className="soccer-team-app" >
+
+      <PlayerList onRemovePlayer={onRemovePlayer} players={players} />
+    </div>
+  )
 }
