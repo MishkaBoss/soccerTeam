@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app"
 import {
     getAuth,
-    signInWithPopup,
+    // signInWithPopup,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    // sendPasswordResetEmail,
+    sendPasswordResetEmail,
     signOut,
 } from "firebase/auth"
 import {
@@ -24,7 +24,7 @@ const firebaseConfig = {
     messagingSenderId: "576518184821",
     appId: "1:576518184821:web:cfbfec6c171a6b2751bd3c",
     measurementId: "G-9X6FVC0RGS"
-};
+}
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
@@ -33,31 +33,42 @@ const db = getFirestore(app)
 
 const logInWithEmailAndPassword = async (email, password) => {
     try {
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, password)
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        console.error(err)
+        alert(err.message)
     }
 }
 
 const registerWithEmailAndPassword = async (name, email, password) => {
     try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        const user = res.user;
+        const res = await createUserWithEmailAndPassword(auth, email, password)
+        const user = res.user
         await addDoc(collection(db, "users"), {
             uid: user.uid,
             name,
             authProvider: "local",
             email,
-        });
+        })
     } catch (err) {
-        console.error(err);
-        alert(err.message);
+        console.error(err)
+        alert(err.message)
     }
 }
 
 const logout = () => {
-    signOut(auth);
+    signOut(auth)
+    console.log(`logout ~ auth`, auth)
+}
+
+const sendPasswordReset = async (email) => {
+    try {
+        await sendPasswordResetEmail(auth, email)
+        alert("Password reset link sent!")
+    } catch (err) {
+        console.error(err)
+        alert(err.message)
+    }
 }
 
 
@@ -66,6 +77,6 @@ export {
     db,
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
-    // sendPasswordReset,
+    sendPasswordReset,
     logout,
 }

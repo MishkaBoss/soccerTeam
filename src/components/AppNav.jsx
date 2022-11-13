@@ -6,9 +6,9 @@ export const AppNav = () => {
         <header className='app-nav'>
             <section className="container">
                 <nav >
-                    <NavLink to='/'>Dashboard</NavLink>
-                    <NavLink to='/login'>Login</NavLink>
-                    <NavLink to='/register'>Register</NavLink>
+                    <NavLink to='/profile'>Profile</NavLink>
+                    {/* <NavLink to='/'>Login</NavLink> */}
+                    {/* <NavLink to='/register'>Register</NavLink> */}
                 </nav>
             </section>
         </header>
