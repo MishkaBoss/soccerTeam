@@ -5,7 +5,7 @@ export const PlayerPreview = ({ player, onRemovePlayer }) => {
     <div>
       <div>
         <p>{player.name}</p>
-        <button onClick={() => onRemovePlayer(player._id)}>Remove</button>
+        <button onClick={() => onRemovePlayer(player.uid)}>Remove</button>
       </div>
     </div >
   )

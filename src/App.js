@@ -18,7 +18,7 @@ function App() {
             <Route path='/' element={<LoginPage />} />
           </Routes>
         </main>
-        <AppNav></AppNav>
+        {/* <AppNav></AppNav> */}
       </div>
     </Router>
   )

@@ -24,13 +24,13 @@ export function playerReducer(state = INITIAL_STATE, action) {
         case 'REMOVE_PLAYER':
             return {
                 ...state,
-                players: state.players.filter(player => player._id !== action.playerId)
+                players: state.players.filter(player => player.uid !== action.playerId)
             }
 
         case 'UPDATE_PLAYER':
             return {
                 ...state,
-                players: state.players.map(player => player._id === action.player._id ? action.player : player)
+                players: state.players.map(player => player.uid === action.player.uid ? action.player : player)
             }
 
         case 'SET_FILTER_BY':
@@ -39,7 +39,7 @@ export function playerReducer(state = INITIAL_STATE, action) {
                 filterBy: { ...action.filterBy }
             }
 
-  
+
 
 
 

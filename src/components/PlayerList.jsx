@@ -6,7 +6,7 @@ export const PlayerList = ({ players, onRemovePlayer }) => {
 
 
     <div className='player-list'>
-      {players.map(player => <PlayerPreview key={player._id} player={player} onRemovePlayer={onRemovePlayer} />)}
+      {players.map(player => <PlayerPreview key={player.uid} player={player} onRemovePlayer={onRemovePlayer} />)}
     </div>
 
   )
