@@ -4,6 +4,7 @@ import { SoccerTeamApp } from './pages/SoccerTeamApp'
 import { AppNav } from './components/AppNav'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage.jsx'
+import { CreateGamePage } from './pages/CreateGamePage'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <div className='main-app'>
         <main className='container'>
           <Routes>
+            <Route path='/newGame' element={<CreateGamePage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/dashboard' element={<SoccerTeamApp />} />
             <Route path='/' element={<LoginPage />} />

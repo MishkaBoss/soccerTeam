@@ -6,21 +6,23 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../services/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import { ImArrivingButton } from '../components/ImArrivingButton';
 import { playerService } from '../services/playerService';
+import { Link } from 'react-router-dom';
 
 export const SoccerTeamApp = (props) => {
   const { players } = useSelector(state => state.playerModule)
   const dispatch = useDispatch()
+  const userCollectionRef = collection(db, "users")
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [uid, setUid] = useState("");
-  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [users, setUsers] = useState([])
+  // const [isConfirmed, setIsConfirmed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(loadPlayers())
-    // console.log(players);
+    fetchAllUsers()
     return () => {
 
     }
@@ -31,6 +33,20 @@ export const SoccerTeamApp = (props) => {
     if (!user) return navigate("/");
     fetchUserName();
   }, [user, loading])
+
+  useEffect(() => {
+    fetchAllUsers()
+  }, [])
+
+
+
+  const fetchAllUsers = async () => {
+    const docSnap = await getDocs(userCollectionRef)
+    setUsers(docSnap.docs.map((doc) => ({ ...doc.data() })))
+
+  }
+
+
 
   const fetchUserName = async () => {
     try {
@@ -44,6 +60,7 @@ export const SoccerTeamApp = (props) => {
       alert("An error occured while fetching user data");
     }
   }
+
 
   const onRemovePlayer = async (playerId) => {
 
@@ -67,6 +84,7 @@ export const SoccerTeamApp = (props) => {
   if (!players) return <div>Loading... </div>
   return (
     <div className="soccer-team-app" >
+      {/* {users.map((user) => { return <div><h1>Name: {user.name}</h1></div> })} */}
       <div className="dashboard__container">
         Logged in as
         <div>{name}</div>
@@ -74,10 +92,11 @@ export const SoccerTeamApp = (props) => {
         <div>{user?.email}</div><br />
         <button className="dashboard__btn" onClick={onLogout}>Logout</button>
       </div>
+      <div><Link to='/newGame'>Create New Game</Link></div>
       <br />
       <div className="confirmed-players">
         <h3>Players Arriving Today's Match:</h3>
-        <PlayerList onRemovePlayer={onRemovePlayer} players={players} />
+        <PlayerList onRemovePlayer={onRemovePlayer} users={users} />
       </div>
       <br />
       <section className='arriving-btn'>

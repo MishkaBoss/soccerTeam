@@ -22,7 +22,7 @@ export const LoginPage = () => {
     }, [user, loading])
 
     return (
-        <div>LoginPage /login
+        <div>
             <div className="login__container">
                 <input type="text" className="login__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address"
                 />

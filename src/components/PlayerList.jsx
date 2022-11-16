@@ -1,12 +1,12 @@
 import React from 'react'
 import { PlayerPreview } from './PlayerPreview'
 
-export const PlayerList = ({ players, onRemovePlayer }) => {
+export const PlayerList = ({ users, onRemovePlayer }) => {
   return (
 
 
     <div className='player-list'>
-      {players.map(player => <PlayerPreview key={player.uid} player={player} onRemovePlayer={onRemovePlayer} />)}
+      {users.map(user => <PlayerPreview key={user.uid} user={user} onRemovePlayer={onRemovePlayer} />)}
     </div>
 
   )

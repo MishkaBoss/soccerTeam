@@ -49,13 +49,13 @@ const registerWithEmailAndPassword = async (name, email, password) => {
             name,
             authProvider: "local",
             email,
-            isConfirmed: false
         })
     } catch (err) {
         console.error(err)
         alert(err.message)
     }
 }
+
 
 const logout = () => {
     signOut(auth)

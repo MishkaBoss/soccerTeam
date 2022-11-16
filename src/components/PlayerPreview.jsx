@@ -1,11 +1,11 @@
 import React from 'react'
 
-export const PlayerPreview = ({ player, onRemovePlayer }) => {
+export const PlayerPreview = ({ user, onRemovePlayer }) => {
   return (
     <div>
       <div>
-        <p>{player.name}</p>
-        <button onClick={() => onRemovePlayer(player.uid)}>Remove</button>
+        <p>{user.name}</p>
+        <button onClick={() => onRemovePlayer(user.uid)}>Remove</button>
       </div>
     </div >
   )
