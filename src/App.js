@@ -5,6 +5,7 @@ import { AppNav } from './components/AppNav'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage.jsx'
 import { CreateGamePage } from './pages/CreateGamePage'
+import { GameDetailsPage } from './pages/GameDetailsPage'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path='/newGame' element={<CreateGamePage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/dashboard' element={<SoccerTeamApp />} />
+            <Route path='/dashboard/:id' element={<GameDetailsPage />} />
             <Route path='/' element={<LoginPage />} />
           </Routes>
         </main>

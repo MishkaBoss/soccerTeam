@@ -1,7 +1,7 @@
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { db } from '../services/firebase'
-import { gameService } from '../services/gameService'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateGamePage = () => {
 
@@ -11,15 +11,22 @@ export const CreateGamePage = () => {
 
     const gamesCollectionRef = collection(db, "games")
 
+    const navigate = useNavigate()
 
-    const createNewGame = async () => {
+
+    const createNewGame = async (ev) => {
+        const ref = doc(gamesCollectionRef)
+        console.log(ref);
+        ev.preventDefault()
         await addDoc(gamesCollectionRef, {
+            gameId: ref.id,
             gameDate,
             gameTime,
             maxPlayers,
             players: [],
             awaiting: []
         })
+        navigate("/dashboard")
     }
 
     return (

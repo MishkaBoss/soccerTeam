@@ -1,7 +1,10 @@
 import React from 'react'
+import { GamePreview } from './GamePreview'
 
-export const GameList = () => {
+export const GameList = ({ games }) => {
     return (
-        <div>GameList</div>
+        <div>
+            {games.map(game => <GamePreview game={game} key={game.gameId} />)}
+        </div>
     )
 }

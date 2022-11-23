@@ -5,6 +5,7 @@ function store(key, value) {
 
 function load(key, defaultValue = null) {
     var value = localStorage[key] || defaultValue;
+    console.log(`loaded from local storage`)
     return JSON.parse(value);
 }
 export const storageService = {

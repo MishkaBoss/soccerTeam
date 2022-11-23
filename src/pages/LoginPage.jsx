@@ -22,17 +22,19 @@ export const LoginPage = () => {
     }, [user, loading])
 
     return (
-        <div>
-            <div className="login__container">
-                <input type="text" className="login__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address"
-                />
-                <input type="password" className="login__textBox" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
-                />
-                <button className="login__btn" onClick={() => logInWithEmailAndPassword(email, password)}>
-                    Login
-                </button>
-                <div>
-                    Don't have an account? <Link to="/register">Register</Link> now.
+        <div className='login-page'>
+            <div className="login-container">
+                <div className="login-form">
+                    <input type="text" className="login-textbox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address"
+                    />
+                    <input type="password" className="login-textbox" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
+                    />
+                    <button className="login-btn" onClick={() => logInWithEmailAndPassword(email, password)}>
+                        Login
+                    </button>
+                    <div className='register-section'>
+                        Don't have an account? <Link className='register-btn' to="/register">Register</Link> now.
+                    </div>
                 </div>
             </div>
         </div>
