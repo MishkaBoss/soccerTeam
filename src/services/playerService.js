@@ -144,17 +144,10 @@ function sort(arr) {
 }
 
 function getPlayers(filterBy) {
-    console.log(`getPlayers ~ filterBy`, filterBy)
-    // console.log(`getPlayers ~ filterBy.term`, filterBy.term)
-
     return new Promise((resolve, reject) => {
         var playersToReturn = gPlayers
-        console.log(gPlayers);
         if (filterBy && filterBy.term) {
-
-
             playersToReturn = filter(filterBy.term)
-
         }
         resolve(sort(playersToReturn))
 

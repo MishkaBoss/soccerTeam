@@ -10,7 +10,7 @@ import { playerService } from '../services/playerService';
 import { Link } from 'react-router-dom';
 import { GameList } from '../components/GameList';
 
-export const SoccerTeamApp = (props) => {
+export const SoccerTeamApp = () => {
   const { players } = useSelector(state => state.playerModule)
   const dispatch = useDispatch()
   const userCollectionRef = collection(db, "users")
@@ -36,7 +36,7 @@ export const SoccerTeamApp = (props) => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-  }, [])
+  }, [user])
 
 
 
@@ -76,10 +76,10 @@ export const SoccerTeamApp = (props) => {
     // const isConfirmed = false
   }
 
-  const onLogout = () => {
+  const handleLogout = () => {
     logout()
+    navigate('/dashboard')
     console.log(`logged out`)
-    navigate('/')
     // navigate(-2)
   }
 
@@ -89,32 +89,22 @@ export const SoccerTeamApp = (props) => {
     console.log(games)
   }
 
-  if (!players) return <div>Loading... </div>
+  if (!user) return <div>Loading... </div>
   return (
     <div className="soccer-team-app" >
-      {/* {users.map((user) => { return <div><h1>Name: {user.name}</h1></div> })} */}
       <div className="dashboard__container">
         Logged in as
         <div>{name}</div>
-        {/* <div>{uid}</div> */}
+        <div>{uid}</div>
         <div>{user?.email}</div><br />
-        <button className="dashboard__btn" onClick={onLogout}>Logout</button>
+        <button className="dashboard__btn" onClick={handleLogout}>Logout</button>
       </div>
       <div><Link to='/newGame'>Create New Game</Link></div>
       <br />
-      {/* <div className="confirmed-players">
-        <h3>Players Arriving Today's Match:</h3>
-        <PlayerList onRemovePlayer={onRemovePlayer} users={users} />
-      </div> */}
       <div className="games-list">
         <h3>games:</h3>
-        {/* {games} */}
-        <GameList games={games} />
+        <GameList games={games} name={name} />
       </div>
-      <br />
-      <section className='arriving-btn'>
-        <button onClick={onConfirm} >I want to play!</button>
-      </section>
     </div>
   )
 }

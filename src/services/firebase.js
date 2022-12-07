@@ -59,7 +59,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const logout = () => {
     signOut(auth)
-    console.log(`logout ~ auth`, auth)
+    console.log(`logged out - from service`)
 }
 
 const sendPasswordReset = async (email) => {
