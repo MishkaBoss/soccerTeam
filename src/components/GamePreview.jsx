@@ -21,17 +21,18 @@ export const GamePreview = ({ game, name }) => {
 
 
     return (
-        <div>
+        <div className='flex flex-col justify-center rounded-md items-center w-5/6 sm:w-3/4 h-64 shadow-xl mb-5 mx-auto'>
             <Link to={`/dashboard/${game.gameId}`} name={name}>
-                <div className='when'>
-                    <h1>When?</h1>
-                    <h2>{game.gameDate}</h2>
-                    <h2>{game.gameTime}</h2>
+                <div className='flex flex-col'>
+                    <h1 className='text-3xl font-bold text-mainColor'>When?</h1>
+                    <h2 className='text-xl'><span className='font-bold'>Date:</span> {game.gameDate}</h2>
+                    <h2 className='text-xl'><span className='font-bold'>Time:</span> {game.gameTime}</h2>
+                    <h2 className='text-xl'><span className='font-bold'>Confirmed Players:</span> {game.players.length}</h2>
                     {/* <h2>{game.id}</h2> */}
                 </div></Link>
 
             <section className="actions">
-                <button
+                <button className='button button-main'
                     onClick={() => { deleteGame(game.gameId) }}>
                     Delete Game
                 </button>

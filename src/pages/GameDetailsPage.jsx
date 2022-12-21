@@ -121,13 +121,13 @@ export const GameDetailsPage = () => {
 
     if (!game) return <div>Loading... </div>
     return (
-        <div>
-            <h3>logged in as: {name}</h3>
-            <h3>Date: {game.gameDate}</h3>
-            <h3>Time: {game.gameTime}</h3>
-            <h3>Number of players coming: {game.players.length}</h3>
+        <div className='flex flex-col items-center mt-5'>
+            <h1 className='text-3xl md:text-5xl font-bold text-mainColor my-3'>Game Details</h1>
+            <h3 className='text-xl md:text-2xl my-1'> <span className='font-bold text-2xl md:text-3xl'>Date:</span> {game.gameDate}</h3>
+            <h3 className='text-xl md:text-2xl mb-1'><span className='font-bold text-2xl md:text-3xl'>Time:</span>  {game.gameTime}</h3>
+            <h3 className='text-xl md:text-2xl'><span className='font-bold text-2xl md:text-3xl'>Arriving Players:</span>  {game.players.length}</h3>
             <Weather weatherData={weatherData} />
-            <button onClick={() => { addPlayerToGame(docId, name, user.uid) }}>{isJoined ? `Can't come` : `Join game`}</button>
+            <button className='button button-main' onClick={() => { addPlayerToGame(docId, name, user.uid) }}>{isJoined ? `Can't come` : `Join game`}</button>
         </div>
     )
 }

@@ -23,33 +23,36 @@ export const RegisterPage = () => {
 
 
     return (
-        <div>RegisterPage /register
-            <div className="register__container">
+        <div>
+             <h1 className="font-bold text-3xl md:text-5xl text-center my-14 text-mainColor">Soccer Team App</h1>
+          <div className="flex flex-col items-center shadow-xl rounded-lg w-3/4 sm:w-80 h-96 mx-auto relative">
+          <div className="flex flex-col items-center">
                 <input
                     type="text"
-                    className="register__textBox"
+                    className="border-none rounded-lg bg-gray-50 mt-7"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name"
                 />
                 <input
                     type="text"
-                    className="register__textBox"
+                    className="border-none rounded-lg bg-gray-50 mt-4"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="E-mail Address"
                 />
                 <input
                     type="password"
-                    className="register__textBox"
+                    className="border-none rounded-lg bg-gray-50 mt-4"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                 />
-                <button className="register__btn" onClick={register}>
+                <button className="button button-main absolute bottom-12" onClick={register}>
                     Register
                 </button>
             </div>
+          </div>
         </div>
     )
 }
